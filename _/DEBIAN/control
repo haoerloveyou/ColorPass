@@ -1,6 +1,6 @@
 Package: com.caetan0.colorpass
 Name: ColorPass
-Depends: mobilesubstrate, libcolorpicker
+Depends: mobilesubstrate, org.thebigboss.libcolorpicker
 Architecture: iphoneos-arm
 Description: Change the color of your passcode keys!
 Maintainer: Caetano Melone
