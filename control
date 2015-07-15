@@ -3,8 +3,8 @@ Name: ColorPass
 Depends: mobilesubstrate, org.thebigboss.libcolorpicker
 Architecture: iphoneos-arm
 Description: Change the color of your passcode keys!
-Maintainer: Caetano Melone
+Maintainer: Caetano Melone <caetanomelone@gmail.com>
 Author: Caetano Melone <caetanomelone@gmail.com>
 Section: Tweaks
-Version: 0.0.1-420-3
-Installed-Size: 192
+Version: 1.1
+Installed-Size: 200

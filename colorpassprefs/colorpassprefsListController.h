@@ -8,6 +8,6 @@
 
 #import "Preferences/PSListController.h"
 
-@interface colorpassprefsListController : PSListController
-
+@interface colorpassprefsListController: PSListController  { 
+}
 @end

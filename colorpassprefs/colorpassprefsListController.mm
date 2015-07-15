@@ -7,8 +7,33 @@
 //
 
 #import "colorpassprefsListController.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import <Social/SLComposeViewController.h>
+#import <Social/SLServiceTypes.h>
+#import <UIKit/UIKit.h>
 
 @implementation colorpassprefsListController
+
+- (id)init
+{
+	if (self == [super init]) {
+		UIButton *heart = [[[UIButton alloc] initWithFrame:CGRectZero] autorelease];
+		[heart setImage:[UIImage imageNamed:@"Heart" inBundle:[NSBundle bundleWithPath:@"/Library/PreferenceBundles/colorpassprefs.bundle"]] forState:UIControlStateNormal];
+		[heart sizeToFit];
+		[heart addTarget:self action:@selector(love) forControlEvents:UIControlEventTouchUpInside];
+		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heart] autorelease];
+	}
+	return self;
+}
+
+- (void)love
+{
+	SLComposeViewController *twitter = [[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter] retain];
+	[twitter setInitialText:@"I'm using #ColorPass by @caetanomelone to change the color of my passcode keys!"];
+	if (twitter != nil)
+		[[self navigationController] presentViewController:twitter animated:YES completion:nil];
+	[twitter release];
+}
 
 - (id)specifiers {
 	if (_specifiers == nil) {
@@ -24,7 +49,6 @@
 	[self reload];
 	[super viewWillAppear:animated];
 }
-
 
 -(void)followcaetano {
 
@@ -47,20 +71,23 @@
 
 - (void)FollowRob {
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://user?screen_name=Rob311Apps"]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"twitter://user?screen_name=Rob311Apps"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"twitter://user?screen_name=Rob311Apps"]];
     } else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:///user_profile/Rob311Apps"]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tweetbot:///user_profile/Rob311Apps"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tweetbot:///user_profile/Rob311Apps"]];
     }  else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/Rob311Apps"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/Rob311Apps"]];
     }
 }
--(void) sendEmail {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:caetanomelone@gmail.com?subject=ColorPass"]];
+
+-(void) githubPage {
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/caetan0/ColorPass"]];
 }
 
--(void) installSleekCode {
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"cydia://package/com.newjoy.sleekcode"]];
+-(void) sendEmail {
+UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"Email Support" message:@"If you have any problems or suggestions regarding ColorPass, please go to Cydia>Installed>ColorPass>Author and send me an email from there. You can also send me an email at caetanomelone@gmail.com" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+[alert1 show];
 }
+
 @end
 
 @protocol PreferencesTableCustomView
@@ -124,7 +151,7 @@
  
 -(CGFloat)preferredHeightForWidth:(CGFloat)arg1 {
 
-	CGFloat prefHeight = 90.0;
+	CGFloat prefHeight = 48.0;
 	return prefHeight;
 }
 @end

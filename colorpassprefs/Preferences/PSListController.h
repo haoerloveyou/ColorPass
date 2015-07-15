@@ -9,6 +9,13 @@
 
 @class NSArray, NSMutableArray, NSMutableDictionary, NSString, UIActionSheet, UIAlertView, UIKeyboard, UIPopoverController, UITableView, UIView;
 
+
+
+@interface PSViewController ()
+- (id)getVersion;
+- (id)deviceName;
+@end
+
 @interface PSListController : PSViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate/*, PSViewControllerOffsetProtocol*/> {
     
     /*
