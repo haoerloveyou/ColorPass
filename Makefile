@@ -1,3 +1,4 @@
+THEOS_PACKAGE_DIR_NAME = debs
 ARCHS = armv7 arm64
 
 TARGET = iphone:clang:latest:5.0
