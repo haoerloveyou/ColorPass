@@ -8,11 +8,13 @@ include theos/makefiles/common.mk
 
 BUNDLE_NAME = colorpassprefs
 colorpassprefs_CFLAGS = -fno-objc-arc
-colorpassprefs_FILES = colorpassprefsListController.mm
+colorpassprefs_FILES = colorpassprefsListController.mm About.mm 
 colorpassprefs_INSTALL_PATH = /Library/PreferenceBundles
 colorpassprefs_FRAMEWORKS = Foundation UIKit MessageUI Social CoreGraphics
+colorpassprefs_LIBRARIES = colorpicker MobileGestalt
 colorpassprefs_PRIVATE_FRAMEWORKS = Preferences
-colorpassprefs_LIBRARIES = colorpicker
+
+
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

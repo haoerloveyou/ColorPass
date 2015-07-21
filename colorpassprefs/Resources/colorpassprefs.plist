@@ -67,62 +67,26 @@
 			<key>label</key>
 			<string></string>
 		</dict>
-<dict>
-	<key>action</key>
-	<string>followcaetano</string>
-	<key>cell</key>
-	<string>PSButtonCell</string>
-	  <key>icon</key>
-                         <string>Twitter.png</string>
-	<key>label</key>
-	<string>Developer's Twitter (@caetanomelone)</string>
-</dict>
-<dict>
-				<key>action</key>
-				<string>githubPage</string>
-				<key>cell</key>
-				<string>PSButtonCell</string>
-                       	  <key>icon</key>
-                         <string>Github.png</string>
-<key>label</key>
-				<string>View the source code for ColorPass on Github</string>
-</dict>
-<dict>
-				<key>action</key>
-				<string>sendEmail</string>
-				<key>cell</key>
-				<string>PSButtonCell</string>
-				<key>label</key>
-				<string> ✉️     Email Support</string>
-</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Special Thanks:</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>FollowRob</string>
+			<dict>
+            <key>cell</key>             <string>PSLinkCell</string>
+	    <key>detail</key>		<string>AboutListController</string>
+	    <key>label</key>            <string>About</string>
+        </dict>
+        		<dict>
 			<key>cell</key>
 			<string>PSButtonCell</string>
-			<key>icon</key>
-			<string>Rob.png</string>
 			<key>label</key>
-			<string>@Rob311Apps</string>
+			<string>Email Support</string>
+			<key>action</key>
+			<string>emailCP</string>
 		</dict>
-		<dict>
+        <dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>© 2015 caetan0 (Caetano Melone)
-
-
-PLEASE READ: When you choose a color in ColorPass that is similar to the one in your wallpaper, you may not see the input above the passcode field. If you would like to see when you enter a number, use a tweak that changes the blur or opacity of your wallpaper/lock screen, or you could always change your wallpaper. I'm sorry for the inconvenience.</string>
+			<string>© 2015 caetan0 (Caetano Melone)</string>
 			<key>isStaticText</key>
 			<true/>
-			<key>label</key>
-			<string></string>
 		</dict>
 	</array>
 	<key>title</key>

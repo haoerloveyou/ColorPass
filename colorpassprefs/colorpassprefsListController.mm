@@ -1,46 +1,33 @@
-//
-//  colorpassprefsListController.m
-//  colorpassprefs
-//
-//  Created by rob311 on 29.06.2015.
-//  Copyright (c) 2015 rob311. All rights reserved.
-//
-
+#import <Preferences/Preferences.h>
 #import "colorpassprefsListController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/SLComposeViewController.h>
 #import <Social/SLServiceTypes.h>
 #import <UIKit/UIKit.h>
+#import <MobileGestalt/MobileGestalt.h>
+
+@interface colorpassprefsListController: PSListController <MFMailComposeViewControllerDelegate> {
+}
+@end
 
 @implementation colorpassprefsListController
-
-- (id)init
-{
-	if (self == [super init]) {
-		UIButton *heart = [[[UIButton alloc] initWithFrame:CGRectZero] autorelease];
-		[heart setImage:[UIImage imageNamed:@"Heart" inBundle:[NSBundle bundleWithPath:@"/Library/PreferenceBundles/colorpassprefs.bundle"]] forState:UIControlStateNormal];
-		[heart sizeToFit];
-		[heart addTarget:self action:@selector(love) forControlEvents:UIControlEventTouchUpInside];
-		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heart] autorelease];
-	}
-	return self;
-}
-
-- (void)love
-{
-	SLComposeViewController *twitter = [[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter] retain];
-	[twitter setInitialText:@"I'm using #ColorPass by @caetanomelone to change the color of my passcode keys!"];
-	if (twitter != nil)
-		[[self navigationController] presentViewController:twitter animated:YES completion:nil];
-	[twitter release];
-}
-
 - (id)specifiers {
-	if (_specifiers == nil) {
+	if(_specifiers == nil) {
 		_specifiers = [[self loadSpecifiersFromPlistName:@"colorpassprefs" target:self] retain];
-	}
-    
-	return _specifiers;
+	
+	UIBarButtonItem *shareButton ([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeTweet:)]);
+        shareButton.tag = 1;
+        [[self navigationItem] setRightBarButtonItem:shareButton];
+        [shareButton release];
+        }
+        return _specifiers;
+}
+
+-(void)composeTweet:(id)sender
+{
+        SLComposeViewController * composeController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [composeController setInitialText:@"I'm using ColorPass by @caetanomelone to change the color of my passcode keys!"];
+        [self presentViewController:composeController animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,7 +37,32 @@
 	[super viewWillAppear:animated];
 }
 
--(void)followcaetano {
+- (void)emailCP {
+    MFMailComposeViewController *emailCP = [[MFMailComposeViewController alloc] init];
+    [emailCP setSubject:@"ColorPass Support"];
+    [emailCP setToRecipients:[NSArray arrayWithObjects:@"caetan0 <caetanomelone@gmail.com>", nil]];
+
+    NSString *product = nil, *version = nil, *build = nil;
+
+    
+        product = (NSString *)MGCopyAnswer(kMGProductType);
+        version = (NSString *)MGCopyAnswer(kMGProductVersion);
+        build = (NSString *)MGCopyAnswer(kMGBuildVersion);
+
+    [emailCP setMessageBody:[NSString stringWithFormat:@"\n\nCurrent Device: %@, iOS %@ (%@)", product, version, build] isHTML:NO];
+
+    [emailCP addAttachmentData:[NSData dataWithContentsOfFile:@"/var/mobile//Library/Preferences/com.caetan0.colorpassprefs.plist"] mimeType:@"application/xml" fileName:@"ColorPassPrefs.plist"];
+    system("/usr/bin/dpkg -l >/tmp/dpkgl.log");
+    [emailCP addAttachmentData:[NSData dataWithContentsOfFile:@"/tmp/dpkgl.log"] mimeType:@"text/plain" fileName:@"dpkgl.txt"];
+    [self.navigationController presentViewController:emailCP animated:YES completion:nil];
+    emailCP.mailComposeDelegate = self;
+    [emailCP release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self dismissViewControllerAnimated: YES completion: nil];
+}
+-(void)followCaetano {
 
 	NSString *user = @"caetanomelone";
 	if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:"]])
@@ -68,26 +80,27 @@
 	else
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://mobile.twitter.com/" stringByAppendingString:user]]];
 }
+-(void)followRob {
 
-- (void)FollowRob {
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://user?screen_name=Rob311Apps"]]) {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"twitter://user?screen_name=Rob311Apps"]];
-    } else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:///user_profile/Rob311Apps"]]) {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tweetbot:///user_profile/Rob311Apps"]];
-    }  else {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/Rob311Apps"]];
-    }
+	NSString *user = @"rob311apps";
+	if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:"]])
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"tweetbot:///user_profile/" stringByAppendingString:user]]];
+	
+	else if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitterrific:"]])
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"twitterrific:///profile?screen_name=" stringByAppendingString:user]]];
+	
+	else if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetings:"]])
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"tweetings:///user?screen_name=" stringByAppendingString:user]]];
+	
+	else if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter:"]])
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"twitter://user?screen_name=" stringByAppendingString:user]]];
+	
+	else
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://mobile.twitter.com/" stringByAppendingString:user]]];
 }
-
--(void) githubPage {
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/caetan0/ColorPass"]];
-}
-
--(void) sendEmail {
-UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"Email Support" message:@"If you have any problems or suggestions regarding ColorPass, please go to Cydia>Installed>ColorPass>Author and send me an email from there. You can also send me an email at caetanomelone@gmail.com" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-[alert1 show];
-}
-
+- (void)openSource {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/caetan0/ColorPass"]];
+} 
 @end
 
 @protocol PreferencesTableCustomView
@@ -151,8 +164,9 @@ UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"Email Support" message
  
 -(CGFloat)preferredHeightForWidth:(CGFloat)arg1 {
 
-	CGFloat prefHeight = 48.0;
+	CGFloat prefHeight = 46.0;
 	return prefHeight;
 }
 @end
 
+// vim:ft=objc
