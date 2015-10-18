@@ -1,30 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>items</key>
 	<array>
-                <dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Developer</string>    
-		</dict>
 		<dict>
 	<key>action</key>
 	<string>followCaetano</string>
 	<key>cell</key>
 	<string>PSButtonCell</string>
 	<key>icon</key>
-			<string>caetano.png</string>
+			<string>twitter.png</string>
 	<key>label</key>
-	<string>follow me on twitter</string> 
+	<string>Developer's Twitter</string>
 </dict>
                 <dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Special Thanks</string>    
+			<string>Special Thanks</string>
 		</dict>
 		<dict>
 	<key>action</key>
@@ -34,7 +26,7 @@
 	<key>icon</key>
 			<string>Rob.png</string>
 	<key>label</key>
-	<string>@rob311apps</string> 
+	<string>@rob311apps</string>
 </dict>
      <dict>
 			<key>cell</key>
@@ -48,7 +40,7 @@
 	<key>icon</key>
 			<string>Github.png</string>
 	<key>label</key>
-	<string>Source Code</string> 
+	<string>Source Code</string>
 </dict>
 	</array>
 	<key>title</key>

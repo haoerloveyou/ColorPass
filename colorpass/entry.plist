@@ -1,0 +1,10 @@
+{
+    entry = {
+	bundle = colorpass;
+	cell = PSLinkCell;
+	detail = colorpassListController;
+	icon = colorpass.png;
+	isController = 1;
+	label = ColorPass;
+    };
+}

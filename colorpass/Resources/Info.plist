@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>colorpassprefs</string>
+	<string>colorpass</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.caetan0.colorpassprefs</string>
+	<string>com.caetan0.colorpass</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -23,6 +21,6 @@
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
 	<key>NSPrincipalClass</key>
-	<string>colorpassprefsListController</string>
+	<string>colorpassListController</string>
 </dict>
 </plist>

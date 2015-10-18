@@ -1,10 +1,4 @@
-#import <Preferences/Preferences.h>
-#import <Social/SLComposeViewController.h>
-#import <Social/SLServiceTypes.h>
-
-@interface AboutListController: PSListController {
-}
-@end
+#import "colorpass.h"
 
 @implementation AboutListController
 - (id)specifiers {
@@ -65,5 +59,3 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/caetan0/ColorPass"]];
 } 
 @end
-
-// vim:ft=objc

@@ -1,6 +1,19 @@
 #import <MessageUI/MessageUI.h>
 #import <Preferences/Preferences.h>
+#import <Preferences/Preferences.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <Social/SLComposeViewController.h>
+#import <Social/SLServiceTypes.h>
+#import <UIKit/UIKit.h>
+#import <MobileGestalt/MobileGestalt.h>
 
+@interface colorpassListController: PSListController <MFMailComposeViewControllerDelegate> {
+}
+@end
+
+@interface AboutListController: PSListController {
+}
+@end
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
 #define kCFCoreFoundationVersionNumber_iOS_7_0 847.20

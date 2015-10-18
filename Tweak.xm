@@ -2,7 +2,7 @@
 -(UIColor *)colorFromHex:(NSString *)hexString;
 @end
 
-#define kColorPassSettings @"/var/mobile/Library/Preferences/com.caetan0.colorpassprefs.plist"
+#define kColorPassSettings @"/var/mobile/Library/Preferences/com.caetan0.colorpass.plist"
 
 static NSMutableDictionary *settings;
 void refreshPrefs()
@@ -10,7 +10,7 @@ void refreshPrefs()
 		if(kCFCoreFoundationVersionNumber > 900.00){ // iOS 8.0
 
 			[settings release];
-			CFStringRef appID2 = CFSTR("com.caetan0.colorpassprefs");	
+			CFStringRef appID2 = CFSTR("com.caetan0.colorpass");
 			CFArrayRef keyList = CFPreferencesCopyKeyList(appID2, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
 			if(keyList)
 			{
@@ -25,12 +25,12 @@ void refreshPrefs()
 		{
 			[settings release];
 			settings = [[NSMutableDictionary alloc] initWithContentsOfFile:[kColorPassSettings stringByExpandingTildeInPath]]; //Load settings the old way.
-	}	
+	}
 }
 
 static void PreferencesChangedCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
 {
-refreshPrefs();	
+refreshPrefs();
 }
 
 %group main
@@ -76,9 +76,9 @@ refreshPrefs();
 %end
 
     %ctor {
-	@autoreleasepool {	
+	@autoreleasepool {
 				settings = [[NSMutableDictionary alloc] initWithContentsOfFile:[kColorPassSettings stringByExpandingTildeInPath]];
-				CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback) PreferencesChangedCallback, CFSTR("com.caetan0.colorpassprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+				CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback) PreferencesChangedCallback, CFSTR("com.caetan0.colorpass/settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
 				refreshPrefs();
 		%init(main);
 	}
