@@ -1,6 +1,5 @@
 #import <MessageUI/MessageUI.h>
 #import <Preferences/Preferences.h>
-#import <Preferences/Preferences.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/SLComposeViewController.h>
 #import <Social/SLServiceTypes.h>
