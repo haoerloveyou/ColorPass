@@ -7,5 +7,6 @@ Maintainer: Caetano Melone <caetanomelone@gmail.com>
 Author: Caetano Melone <caetanomelone@gmail.com>
 Section: Tweaks
 Icon: file:///Library/PreferenceBundles/colorpass.bundle/colorpass@2x.png
+Depiction: https://apt.caetan0.ml/depictions/com.caetan0.colorpass/
 Version: 1.2
 Installed-Size: 420
