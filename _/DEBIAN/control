@@ -6,7 +6,7 @@ Description: Change the color of your passcode keys!
 Maintainer: Caetano Melone <caetanomelone@gmail.com>
 Author: Caetano Melone <caetanomelone@gmail.com>
 Section: Tweaks
-Icon: file:///Library/PreferenceBundles/colorpass.bundle/colorpass@2x.png
+Icon: file:///Library/PreferenceBundles/colorpass.bundle/colorpass@3x.png
 Depiction: https://apt.caetan0.ml/depictions/com.caetan0.colorpass/
 Version: 1.2
-Installed-Size: 420
+Installed-Size: 380
