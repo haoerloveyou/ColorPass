@@ -1,9 +1,3 @@
-THEOS_PACKAGE_DIR_NAME = debs
-TARGET = iphone:clang:latest:9.0
-ARCHS = armv7 arm64
-THEOS_DEVICE_IP = 10.0.1.32
-PACKAGE_VERSION = 1.2
-
 include theos/makefiles/common.mk
 
 TWEAK_NAME = ColorPass
